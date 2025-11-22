@@ -16,5 +16,18 @@ export const Playlists = () => {
     handlePlaySong,
     deletePlaylist,
   } = useMusic();
+
+  const filteredSongs = allSongs.filter((song) => {
+    const matches =
+      song.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      song.artist.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const isAlreadyInPlaylist = selectedPlaylist?.songs.some(
+      (playlistSong) => playlistSong.id === song.id
+    );
+
+    return matches && !isAlreadyInPlaylist;
+  });
+
   return <div>Playlists</div>;
 };
