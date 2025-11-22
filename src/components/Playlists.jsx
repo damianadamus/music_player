@@ -29,5 +29,20 @@ export const Playlists = () => {
     return matches && !isAlreadyInPlaylist;
   });
 
+  const handleCreatePlaylist = () => {
+    if (newPlaylistName.trim()) {
+      createPlaylist(newPlaylistName.trim());
+      setNewPlaylistName("");
+    }
+  };
+
+  const handleAddSong = (song) => {
+    if (selectedPlaylist) {
+      addSongToPlaylist(selectedPlaylist.id, song);
+      setSearchQuery("");
+      setShowDropdown(false);
+    }
+  };
+
   return <div>Playlists</div>;
 };
